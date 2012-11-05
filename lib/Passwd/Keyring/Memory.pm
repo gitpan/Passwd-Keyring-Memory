@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.21
+Version 0.22
 
 =cut
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 =head1 SYNOPSIS
 
@@ -82,6 +82,20 @@ sub clear_password {
     my ($self, $user_name, $domain) = @_;
     delete $self->{_passwords}->{$user_name}->{$domain};
 }
+
+=head2 is_persistent
+
+Returns info, whether this keyring actually saves passwords persistently.
+
+(false in this case)
+
+=cut
+
+sub is_persistent {
+    my ($self) = @_;
+    return 0;
+}
+
 
 =head1 AUTHOR
 
