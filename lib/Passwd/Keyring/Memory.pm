@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.22
+Version 0.23
 
 =cut
 
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 =head1 SYNOPSIS
 
@@ -29,6 +29,10 @@ our $VERSION = '0.22';
 
     $keyring->clear_password("John", "my-pseudodomain");
 
+Note: see L<Passwd::Keyring::KeyringAPI> for detailed comments on
+keyring method semantics (this document is installed with
+Passwd::Keyring::Auto package).
+
 =head1 SUBROUTINES/METHODS
 
 =head2 new
@@ -38,9 +42,12 @@ Initializes the processing.
 =cut
 
 sub new {
+    my ($cls, %args) = @_;
     my $self = {};
     $self->{_passwords} = {}; # user → domain → password
     bless $self;
+    # Note: we ignore $args{app} and $args{group} as we have
+    #       no storage on which we could label the password
     return $self;
 }
 

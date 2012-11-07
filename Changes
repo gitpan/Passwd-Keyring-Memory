@@ -1,5 +1,10 @@
 Revision history for Keyring-MemoryOnly
 
-0.01    Date/time
+0.23    2012-11-07
+        Added is_persistent method.
+        Test and docs updates.
+
+0.21    2012-11-04
         First version, released on an unsuspecting world.
+
 

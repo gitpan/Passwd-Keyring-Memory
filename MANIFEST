@@ -11,6 +11,9 @@ t/01-set-and-get.t
 t/02-many-sets-and-gets.t
 t/03-recovering-in-sep-prog.t
 t/04-is-persistent.t
+t/05-named-construction.t
+t/06-not-confused.t
+t/07-ugly-chars.t
 t/99-cleanup.t
 t/boilerplate.t
 t/manifest.t
