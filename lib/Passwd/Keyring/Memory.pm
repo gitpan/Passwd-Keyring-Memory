@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.23
+Version 0.24
 
 =cut
 
-our $VERSION = '0.23';
+our $VERSION = '0.24';
 
 =head1 SYNOPSIS
 
@@ -33,6 +33,7 @@ Note: see L<Passwd::Keyring::KeyringAPI> for detailed comments on
 keyring method semantics (this document is installed with
 Passwd::Keyring::Auto package).
 
+
 =head1 SUBROUTINES/METHODS
 
 =head2 new
@@ -41,14 +42,30 @@ Initializes the processing.
 
 =cut
 
+# Global map of folders to simulate case of a few ring objects working on the same data.
+# (could be state variable in new, but let's not limit perl versions)
+my $_passwords = {}; 
+
 sub new {
     my ($cls, %args) = @_;
-    my $self = {};
-    $self->{_passwords} = {}; # user → domain → password
-    bless $self;
-    # Note: we ignore $args{app} and $args{group} as we have
-    #       no storage on which we could label the password
+    my $self = {
+        app => $args{app} || "Passwd::Keyring::Memory",
+        group => $args{group} || "Passwd::Keyring::Memory default passwords",
+    };
+    my $group = $self->{group};
+    unless(exists $_passwords->{$group}) {
+        $_passwords->{$group} = {};
+    }
+
+    $self->{_passwords} = $_passwords->{$group}; # key → password
+
+    bless $self, $cls;
     return $self;
+}
+
+sub _password_key {
+    my ($self, $domain, $user_name) = @_;
+    return join("||", $domain, $user_name);
 }
 
 =head2 set_password(username, password, domain)
@@ -59,7 +76,10 @@ Sets (stores) password identified by given domain for given user
 
 sub set_password {
     my ($self, $user_name, $user_password, $domain) = @_;
-    $self->{_passwords}->{$user_name}->{$domain} = $user_password;
+    my $key = $self->_password_key($domain, $user_name);
+    $self->{_passwords}->{ $key } = $user_password;
+
+    #use Data::Dumper; print STDERR Dumper($_passwords);
 }
 
 =head2 get_password($user_name, $domain)
@@ -71,12 +91,13 @@ If such password can not be found, returns undef.
 
 sub get_password {
     my ($self, $user_name, $domain) = @_;
-    my $pwd = $self->{_passwords}->{$user_name}->{$domain};
-    unless(defined($pwd)) {
-        #die "No password stored for $user_name in $domain\n";
+    my $key = $self->_password_key($domain, $user_name);
+
+    if( exists $self->{_passwords}->{$key} ) {
+        return $self->{_passwords}->{$key};
+    } else {
         return undef;
     }
-    return $pwd;
 }
 
 =head2 clear_password($user_name, $domain)
@@ -87,7 +108,17 @@ Removes given password (if present)
 
 sub clear_password {
     my ($self, $user_name, $domain) = @_;
-    delete $self->{_passwords}->{$user_name}->{$domain};
+
+    my $key = $self->_password_key($domain, $user_name);
+
+    #use Data::Dumper; print STDERR Dumper($_passwords);
+
+    if( exists $self->{_passwords}->{$key} ) {
+        delete $self->{_passwords}->{$key};
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 =head2 is_persistent

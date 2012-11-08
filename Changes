@@ -1,5 +1,8 @@
 Revision history for Keyring-MemoryOnly
 
+0.24    2012-11-08
+        Implementing expected app and group semantics (group keys, app only labels)
+
 0.23    2012-11-07
         Added is_persistent method.
         Test and docs updates.
