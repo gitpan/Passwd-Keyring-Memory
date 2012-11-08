@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.24
+Version 0.2401
 
 =cut
 
-our $VERSION = '0.24';
+our $VERSION = '0.2401';
 
 =head1 SYNOPSIS
 
@@ -29,7 +29,7 @@ our $VERSION = '0.24';
 
     $keyring->clear_password("John", "my-pseudodomain");
 
-Note: see L<Passwd::Keyring::KeyringAPI> for detailed comments on
+Note: see L<Passwd::Keyring::Auto::KeyringAPI> for detailed comments on
 keyring method semantics (this document is installed with
 Passwd::Keyring::Auto package).
 
@@ -137,7 +137,7 @@ sub is_persistent {
 
 =head1 AUTHOR
 
-Marcin Kasperski, C<< <Marcin.Kasperski at mekk.waw.pl> >>
+Marcin Kasperski
 
 =head1 BUGS
 
@@ -152,7 +152,11 @@ You can find documentation for this module with the perldoc command.
 
 You can also look for information at:
 
-    L<https://bitbucket.org/Mekk/perl-keyring-memory>
+L<http://search.cpan.org/~mekk/Passwd-Keyring-Memory/>
+
+Source code is tracked at:
+
+L<https://bitbucket.org/Mekk/perl-keyring-memory>
 
 =head1 LICENSE AND COPYRIGHT
 

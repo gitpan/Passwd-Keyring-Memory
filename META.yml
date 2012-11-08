@@ -8,6 +8,9 @@ configure_requires:
   Module::Build: 0.40
 dynamic_config: 1
 generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+keywords:
+  - keyring
+  - passwords
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,9 +19,12 @@ name: Passwd-Keyring-Memory
 provides:
   Passwd::Keyring::Memory:
     file: lib/Passwd/Keyring/Memory.pm
-    version: 0.24
+    version: 0.2401
 requires:
   perl: 5.006
 resources:
+  bugtracker: https://bitbucket.org/Mekk/perl-keyring-memory/issues
+  homepage: http://bitbucket.org/Mekk/perl-keyring-memory
   license: http://dev.perl.org/licenses/
-version: 0.24
+  repository: http://bitbucket.org/Mekk/perl-keyring-memory
+version: 0.2401

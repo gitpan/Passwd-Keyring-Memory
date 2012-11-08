@@ -1,5 +1,8 @@
 Revision history for Keyring-MemoryOnly
 
+0.2401  2012-11-08
+        Small documentation fixes, more info in CPAN metadata
+
 0.24    2012-11-08
         Implementing expected app and group semantics (group keys, app only labels)
 
