@@ -25,7 +25,7 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.40"
+            "Module::Build" : "0.36"
          }
       },
       "runtime" : {
@@ -37,7 +37,7 @@
    "provides" : {
       "Passwd::Keyring::Memory" : {
          "file" : "lib/Passwd/Keyring/Memory.pm",
-         "version" : "0.2401"
+         "version" : "0.2403"
       }
    },
    "release_status" : "stable",
@@ -53,5 +53,5 @@
          "url" : "http://bitbucket.org/Mekk/perl-keyring-memory"
       }
    },
-   "version" : "0.2401"
+   "version" : "0.2403"
 }

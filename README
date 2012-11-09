@@ -1,42 +1,71 @@
-Passwd::Keyring::Memory
+NAME
+    Passwd::Keyring::Memory - fallback keyring for environments where no
+    better keyring is available.
 
-Passwd::Keyring is about using secure storage for passwords
-and other credentials used in perl scripts and applications.
+VERSION
+    Version 0.2403
 
-Passwd::Keyring::Memory is fallback module used by
-Passwd::Keyring::Auto whenever no better keyring is
-available. Passwords are preserved only temporarily, while the program
-is running and not saved anywhere.
+SYNOPSIS
+        use Passwd::Keyring::Memory;
 
-The module also illustrates Keyring backend API.
+        my $keyring = Passwd::Keyring::Memory->new();
 
-INSTALLATION
+        $keyring->set_password("John", "verysecret", "my-pseudodomain");
 
-To install this module, run the following commands:
+        my $password = $keyring->get_password("John", "my-pseudodomain");
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
+        $keyring->clear_password("John", "my-pseudodomain");
 
-SUPPORT AND DOCUMENTATION
+    Note: see Passwd::Keyring::Auto::KeyringAPI for detailed comments on
+    keyring method semantics (this document is installed with
+    Passwd::Keyring::Auto package).
 
-After installing, you can find documentation for this module with the
-perldoc command.
+SUBROUTINES/METHODS
+  new
+    Initializes the processing.
 
-    perldoc Keyring::MemoryOnly
+  set_password(username, password, domain)
+    Sets (stores) password identified by given domain for given user
 
-You can also look for information at:
+  get_password($user_name, $domain)
+    Reads previously stored password for given user in given app. If such
+    password can not be found, returns undef.
 
-    http://bitbucket.org/Mekk/perl-keyring
+  clear_password($user_name, $domain)
+    Removes given password (if present)
+
+  is_persistent
+    Returns info, whether this keyring actually saves passwords
+    persistently.
+
+    (false in this case)
+
+AUTHOR
+    Marcin Kasperski
+
+BUGS
+    Please report any bugs or feature requests to issue tracker at
+    https://bitbucket.org/Mekk/perl-keyring-memory.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc Passwd::Keyring::Memory
+
+    You can also look for information at:
+
+    http://search.cpan.org/~mekk/Passwd-Keyring-Memory/
+
+    Source code is tracked at:
+
+    https://bitbucket.org/Mekk/perl-keyring-memory
 
 LICENSE AND COPYRIGHT
+    Copyright 2012 Marcin Kasperski.
 
-Copyright (C) 2012 Marcin Kasperski
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of either: the GNU General Public License as published
+    by the Free Software Foundation; or the Artistic License.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+    See http://dev.perl.org/licenses/ for more information.
 

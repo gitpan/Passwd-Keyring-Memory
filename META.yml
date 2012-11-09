@@ -5,7 +5,7 @@ author:
 build_requires:
   Test::More: 0
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: 0.36
 dynamic_config: 1
 generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 keywords:
@@ -19,7 +19,7 @@ name: Passwd-Keyring-Memory
 provides:
   Passwd::Keyring::Memory:
     file: lib/Passwd/Keyring/Memory.pm
-    version: 0.2401
+    version: 0.2403
 requires:
   perl: 5.006
 resources:
@@ -27,4 +27,4 @@ resources:
   homepage: http://bitbucket.org/Mekk/perl-keyring-memory
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/Mekk/perl-keyring-memory
-version: 0.2401
+version: 0.2403

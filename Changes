@@ -1,5 +1,11 @@
 Revision history for Keyring-MemoryOnly
 
+0.2403	2012-11-09
+        Test updates
+
+0.2402	2012-11-09
+        Generating README from pod, more informative than previous one.
+
 0.2401  2012-11-08
         Small documentation fixes, more info in CPAN metadata
 

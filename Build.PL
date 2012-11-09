@@ -6,17 +6,24 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name         => 'Passwd::Keyring::Memory',
     license             => 'perl',
-    #create_license      => 1,
-    dist_author         => q{Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>},
-    dist_version_from   => 'lib/Passwd/Keyring/Memory.pm',
+    dynamic_config      => 1,
+
     build_requires => {
         'Test::More' => 0,
+    },
+    configure_requires => {
+        'Module::Build' => '0.36',
     },
     requires => {
         'perl' => 5.006,
     },
-    add_to_cleanup      => [ 'Passwd-Keyring-MemoryOnly-*' ],
+
     create_makefile_pl => 'traditional',
+    add_to_cleanup      => [ 'Passwd-Keyring-MemoryOnly-*' ],
+
+    create_readme      => 1,
+    dist_author         => q{Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>},
+    dist_version_from   => 'lib/Passwd/Keyring/Memory.pm',
     meta_merge => {
         keywords => ['keyring', 'passwords' ],
         resources => {
@@ -24,17 +31,6 @@ my $builder = Module::Build->new(
             homepage    => 'http://bitbucket.org/Mekk/perl-keyring-memory',
             repository => 'http://bitbucket.org/Mekk/perl-keyring-memory',
             bugtracker => 'https://bitbucket.org/Mekk/perl-keyring-memory/issues',
-            #license     => [ 'http://dev.perl.org/licenses/', ],
-            #bugtracker  => {
-            #    web    => 'https://bitbucket.org/Mekk/perl-keyring-memory/issues',
-            #    #mailto => 'meta-bugs@example.com',
-            #},
-            #repository  => {
-            #    url  => 'http://bitbucket.org/Mekk/perl-keyring-memory',
-            #    web  => 'http://bitbucket.org/Mekk/perl-keyring-memory',
-            #    type => 'hg',
-            #},
-            # x_twitter => 'http://twitter.com/costam
         },
     },
 );
