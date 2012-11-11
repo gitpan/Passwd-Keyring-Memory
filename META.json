@@ -1,10 +1,10 @@
 {
-   "abstract" : "fallback keyring for environments",
+   "abstract" : "fallback keyring for environments\nwhere no better keyring is available.",
    "author" : [
       "Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110440",
    "keywords" : [
       "keyring",
       "passwords"
@@ -20,7 +20,8 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Test::More" : "0"
+            "Pod::Readme" : 0,
+            "Test::More" : 0
          }
       },
       "configure" : {
@@ -37,7 +38,7 @@
    "provides" : {
       "Passwd::Keyring::Memory" : {
          "file" : "lib/Passwd/Keyring/Memory.pm",
-         "version" : "0.2403"
+         "version" : "0.2404"
       }
    },
    "release_status" : "stable",
@@ -53,5 +54,5 @@
          "url" : "http://bitbucket.org/Mekk/perl-keyring-memory"
       }
    },
-   "version" : "0.2403"
+   "version" : "0.2404"
 }

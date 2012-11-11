@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.2403
+Version 0.2404
 
 =cut
 
-our $VERSION = '0.2403';
+our $VERSION = '0.2404';
 
 =head1 SYNOPSIS
 
@@ -23,11 +23,11 @@ our $VERSION = '0.2403';
 
     my $keyring = Passwd::Keyring::Memory->new();
 
-    $keyring->set_password("John", "verysecret", "my-pseudodomain");
+    $keyring->set_password("John", "verysecret", "my-realm");
 
-    my $password = $keyring->get_password("John", "my-pseudodomain");
+    my $password = $keyring->get_password("John", "my-realm");
 
-    $keyring->clear_password("John", "my-pseudodomain");
+    $keyring->clear_password("John", "my-realm");
 
 Note: see L<Passwd::Keyring::Auto::KeyringAPI> for detailed comments on
 keyring method semantics (this document is installed with
@@ -64,25 +64,25 @@ sub new {
 }
 
 sub _password_key {
-    my ($self, $domain, $user_name) = @_;
-    return join("||", $domain, $user_name);
+    my ($self, $realm, $user_name) = @_;
+    return join("||", $realm, $user_name);
 }
 
-=head2 set_password(username, password, domain)
+=head2 set_password(username, password, realm)
 
-Sets (stores) password identified by given domain for given user 
+Sets (stores) password identified by given realm for given user 
 
 =cut
 
 sub set_password {
-    my ($self, $user_name, $user_password, $domain) = @_;
-    my $key = $self->_password_key($domain, $user_name);
+    my ($self, $user_name, $user_password, $realm) = @_;
+    my $key = $self->_password_key($realm, $user_name);
     $self->{_passwords}->{ $key } = $user_password;
 
     #use Data::Dumper; print STDERR Dumper($_passwords);
 }
 
-=head2 get_password($user_name, $domain)
+=head2 get_password($user_name, $realm)
 
 Reads previously stored password for given user in given app.
 If such password can not be found, returns undef.
@@ -90,8 +90,8 @@ If such password can not be found, returns undef.
 =cut
 
 sub get_password {
-    my ($self, $user_name, $domain) = @_;
-    my $key = $self->_password_key($domain, $user_name);
+    my ($self, $user_name, $realm) = @_;
+    my $key = $self->_password_key($realm, $user_name);
 
     if( exists $self->{_passwords}->{$key} ) {
         return $self->{_passwords}->{$key};
@@ -100,16 +100,16 @@ sub get_password {
     }
 }
 
-=head2 clear_password($user_name, $domain)
+=head2 clear_password($user_name, $realm)
 
 Removes given password (if present)
 
 =cut
 
 sub clear_password {
-    my ($self, $user_name, $domain) = @_;
+    my ($self, $user_name, $realm) = @_;
 
-    my $key = $self->_password_key($domain, $user_name);
+    my $key = $self->_password_key($realm, $user_name);
 
     #use Data::Dumper; print STDERR Dumper($_passwords);
 

@@ -10,6 +10,7 @@ my $builder = Module::Build->new(
 
     build_requires => {
         'Test::More' => 0,
+        'Pod::Readme' => 0,
     },
     configure_requires => {
         'Module::Build' => '0.36',

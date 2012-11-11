@@ -13,18 +13,18 @@ $GROUP .= "X" x (256 - length($GROUP));
 
 my $USER = "A" x 256;
 my $PWD =  "B" x 256;
-my $DOMAIN = 'C' x 256;
+my $REALM = 'C' x 256;
 
 my $ring = Passwd::Keyring::Memory->new(
     app=>$APP, group=>$GROUP);
 
 ok( defined($ring) && ref $ring eq 'Passwd::Keyring::Memory',   'new() works with long params' );
 
-$ring->set_password($USER, $PWD, $DOMAIN);
+$ring->set_password($USER, $PWD, $REALM);
 
 ok( 1, "set_password with long params works" );
 
-ok( $ring->get_password($USER, $DOMAIN) eq $PWD, "get_password with long params works");
+ok( $ring->get_password($USER, $REALM) eq $PWD, "get_password with long params works");
 
-ok( $ring->clear_password($USER, $DOMAIN) eq 1, "clear_password with long params works");
+ok( $ring->clear_password($USER, $REALM) eq 1, "clear_password with long params works");
 

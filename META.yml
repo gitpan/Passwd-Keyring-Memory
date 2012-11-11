@@ -1,13 +1,14 @@
 ---
-abstract: 'fallback keyring for environments'
+abstract: "fallback keyring for environments\nwhere no better keyring is available."
 author:
   - 'Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>'
 build_requires:
+  Pod::Readme: 0
   Test::More: 0
 configure_requires:
   Module::Build: 0.36
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110440'
 keywords:
   - keyring
   - passwords
@@ -19,7 +20,7 @@ name: Passwd-Keyring-Memory
 provides:
   Passwd::Keyring::Memory:
     file: lib/Passwd/Keyring/Memory.pm
-    version: 0.2403
+    version: 0.2404
 requires:
   perl: 5.006
 resources:
@@ -27,4 +28,4 @@ resources:
   homepage: http://bitbucket.org/Mekk/perl-keyring-memory
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/Mekk/perl-keyring-memory
-version: 0.2403
+version: 0.2404

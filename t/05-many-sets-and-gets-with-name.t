@@ -6,9 +6,9 @@ use Test::Simple tests => 20;
 
 use Passwd::Keyring::Memory;
 
-my $DOMAIN_A = 'my@@domain';
-my $DOMAIN_B = 'bum trala la';
-my $DOMAIN_C = 'other domain';
+my $REALM_A = 'my@@realm';
+my $REALM_B = 'bum trala la';
+my $REALM_C = 'other realm';
 
 my $USER1 = "Paul Anton";
 my $USER2 = "Gżegąź";
@@ -23,48 +23,48 @@ my $ring = Passwd::Keyring::Memory->new(app=>"Passwd::Keyring::Memory", group=>"
 
 ok( defined($ring) && ref $ring eq 'Passwd::Keyring::Memory',   'new() works' );
 
-$ring->set_password($USER1, $PWD1, $DOMAIN_B);
-$ring->set_password($USER2, $PWD2, $DOMAIN_B);#
-$ring->set_password($USER1, $PWD1_ALT, $DOMAIN_C);
-$ring->set_password($USER4, $PWD4, $DOMAIN_B);
+$ring->set_password($USER1, $PWD1, $REALM_B);
+$ring->set_password($USER2, $PWD2, $REALM_B);#
+$ring->set_password($USER1, $PWD1_ALT, $REALM_C);
+$ring->set_password($USER4, $PWD4, $REALM_B);
 
 ok( 1, "set_password works" );
 
-ok( $ring->get_password($USER1, $DOMAIN_B) eq $PWD1, "get works");
+ok( $ring->get_password($USER1, $REALM_B) eq $PWD1, "get works");
 
-ok( $ring->get_password($USER2, $DOMAIN_B) eq $PWD2, "get works");
+ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
 
-ok( $ring->get_password($USER1, $DOMAIN_C) eq $PWD1_ALT, "get works");
+ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-ok( $ring->get_password($USER4, $DOMAIN_B) eq $PWD4, "get works");
+ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-$ring->clear_password($USER1, $DOMAIN_B);
+$ring->clear_password($USER1, $REALM_B);
 ok(1, "clear_password works");
 
-ok( ! defined($ring->get_password($USER1, $DOMAIN_A)), "get works");
+ok( ! defined($ring->get_password($USER1, $REALM_A)), "get works");
 
-ok( ! defined($ring->get_password($USER2, $DOMAIN_A)), "get works");
+ok( ! defined($ring->get_password($USER2, $REALM_A)), "get works");
 
-ok( $ring->get_password($USER2, $DOMAIN_B) eq $PWD2, "get works");
+ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
 
-ok( $ring->get_password($USER1, $DOMAIN_C) eq $PWD1_ALT, "get works");
+ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-ok( $ring->get_password($USER4, $DOMAIN_B) eq $PWD4, "get works");
+ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-ok( $ring->clear_password($USER2, $DOMAIN_B) eq 1, "clear clears");
+ok( $ring->clear_password($USER2, $REALM_B) eq 1, "clear clears");
 
-ok( ! defined($ring->get_password($USER2, $DOMAIN_A)), "clear cleared");
+ok( ! defined($ring->get_password($USER2, $REALM_A)), "clear cleared");
 
-ok( $ring->get_password($USER1, $DOMAIN_C) eq $PWD1_ALT, "get works");
+ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-ok( $ring->get_password($USER4, $DOMAIN_B) eq $PWD4, "get works");
+ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-ok( $ring->clear_password($USER1, $DOMAIN_C) eq 1, "clear clears");
+ok( $ring->clear_password($USER1, $REALM_C) eq 1, "clear clears");
 
-ok( $ring->clear_password($USER4, $DOMAIN_B) eq 1, "clear clears");
+ok( $ring->clear_password($USER4, $REALM_B) eq 1, "clear clears");
 
-ok( ! defined($ring->get_password($USER1, $DOMAIN_C)), "clear cleared");
-ok( ! defined($ring->get_password($USER4, $DOMAIN_B)), "clear cleared");
+ok( ! defined($ring->get_password($USER1, $REALM_C)), "clear cleared");
+ok( ! defined($ring->get_password($USER4, $REALM_B)), "clear cleared");
 
 
 
