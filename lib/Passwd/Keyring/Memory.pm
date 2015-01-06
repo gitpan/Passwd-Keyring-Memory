@@ -11,11 +11,11 @@ where no better keyring is available.
 
 =head1 VERSION
 
-Version 0.2404
+Version 0.2405
 
 =cut
 
-our $VERSION = '0.2404';
+our $VERSION = '0.2405';
 
 =head1 SYNOPSIS
 

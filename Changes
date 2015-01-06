@@ -1,5 +1,8 @@
 Revision history for Keyring-MemoryOnly
 
+0.2405	2015-01-06
+	Adding kwalitee tests
+
 0.2404	2012-11-11
         Minor doc and param name fixes
 
